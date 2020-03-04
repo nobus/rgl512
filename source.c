@@ -4,7 +4,7 @@
 #include <curses.h>
 
 #define SIZEX	128
-#define	SIZEY	64
+#define	SIZEY	32
 static char map[SIZEY][SIZEX];
 
 #define MMAX	50
@@ -63,8 +63,8 @@ static void rand_place(char c, int hp)
 {
 	do
 	{
-		int x = rand()&127;
-		int y = rand()&63;
+		int x = rand()&(SIZEX-1);
+		int y = rand()&(SIZEY-1);
 
 		if (map[y][x] == '.')
 		{
@@ -82,7 +82,7 @@ static void init_map(void)
 
 	draw_region(0, SIZEX - 1, 0, SIZEY, '#');
 
-	for (i = 0; i < 200; i++)
+	for (i = 0; i < (SIZEX + SIZEY); i++)
 	{
 		int r = rand();
 		x1 = rr(1, SIZEX-20,r);
