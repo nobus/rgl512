@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
     while(1) {
         getmaxyx(stdscr, max_y, max_x);
         // Clear the screen of all
-        clear();
+        wclear(field);
 
         // draw our borders 
         draw_borders(field);
@@ -64,9 +64,9 @@ int main(int argc, char *argv[]) {
 
         // previously-printed characters
         // Print our "ball" at the current xy position
-        mvprintw(y, x, "o"); 
+        mvwprintw(field, y, x, "o"); 
 
-        refresh();
+        wrefresh(field);
 
         usleep(DELAY); // Shorter delay between movements
 
